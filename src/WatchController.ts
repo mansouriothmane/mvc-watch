@@ -9,6 +9,11 @@ export class WatchController {
   ) {}
 
   async updateTimeEverySecond() {
+    const remainingMiliseconds = 1000 - new Date().getMilliseconds();
+    await sleep(remainingMiliseconds);
+    this.model.incrementSeconds();
+    this.view.updateTime();
+
     while (true) {
       await sleep(1000);
       this.model.incrementSeconds();

@@ -11,13 +11,11 @@ export class WatchListController {
   }
 
   createWatch(): WatchModel {
-    const localTime = new Date().toLocaleTimeString();
-    const hms: string[] = localTime.split(":");
-
+    const date = new Date();
     const time: Time = {
-      hours: Number(hms[0]),
-      minutes: Number(hms[1]),
-      seconds: Number(hms[2]),
+      hours: date.getHours(),
+      minutes: date.getMinutes(),
+      seconds: date.getSeconds(),
     };
 
     return new WatchModel(time, Mode.DEFAULT, Light.OFF);
