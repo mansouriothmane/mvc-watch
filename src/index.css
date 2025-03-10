@@ -1,34 +1,11 @@
 @font-face {
     font-family: 'Digital-7';
-    src: url('fonts/digital-7.ttf') format('truetype');
+    src: url('fonts/digital-7/digital-7.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'Digital-7-mono';
-    src: url('fonts/digital-7-mono.ttf') format('truetype');
-}
-
-h1 {
-    color: red;
-}
-
-
-.time {
-    display: flex;
-    font-family: 'Digital-7-mono', sans-serif;
-    font-size: 5em;
-    /* color: #ffcc00; */
-    /* text-shadow: 0 0 5px #ffcc00; */
-    padding: 16px;
-}
-
-.time p {
-    margin: 0;
-    /* color: green; */
-}
-
-button {
-    font-size: 2em;
+    src: url('fonts/digital-7/digital-7-mono.ttf') format('truetype');
 }
 
 @keyframes blink-animation {
@@ -41,9 +18,99 @@ button {
 }
 
 .edit-mode {
-animation: blink-animation 1s steps(2) infinite; 
+    animation: blink-animation 1s steps(2) infinite; 
 }
 
 .light-background {
-    background-color: #FBE106;
+    background: #FBE106 !important; 
+}
+
+/**************************************************/
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.watch {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    background-color: purple;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border: 2px solid black;
+}
+
+.time-display {
+    background: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: 'Arial', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    position: relative;
+}
+
+.time-display sup {
+    font-size: 12px;
+    /* position: absolute; */
+    top: 5px;
+    right: -15px;
+}
+
+/* Buttons */
+.button {
+    position: absolute;
+    background: gold;
+    border: 2px solid black;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Button Positions */
+.button.mode { 
+    top: 15px;
+    right: 15px;
+    transform: rotate(45deg);
+}
+
+.button.increase { 
+    bottom: 15px;
+    right: 15px;
+    transform: rotate(-45deg);
+}
+
+.button.light { 
+    bottom: 15px;
+    left: 15px; 
+    transform: rotate(45deg);
+}
+
+/* Button Labels */
+.label {
+    position: absolute;
+}
+
+.label.mode {
+    top: 0px;
+    right: -25px;
+}
+
+.label.increase {
+    bottom: 0px;
+    right: -40px;
+}
+
+.label.light {
+    bottom: 0px;
+    left: -25px;
 }

@@ -11,16 +11,23 @@
   </head>
 
   <body>
-    <h1>Empty Page</h1>
-    <div id="time-container" class="time">
-      <p id="time-h"></p>
-      :
-      <p id="time-m"></p>
-      :
-      <p id="time-s"></p>
+    <h1>Digital Watch</h1>
+    <div class="container">
+      <div class="watch">
+        <!-- Time Display -->
+        <div class="time-display" id="time-container">
+          <span id="time-h"></span>:<span id="time-m"></span>
+          <sup id="time-s"></sup>
+        </div>
+
+        <!-- Buttons -->
+        <span class="label mode">Mode</span>
+        <button class="button mode" id="mode-btn"></button>
+        <span class="label increase">Increase</span>
+        <button class="button increase" id="increase-btn"></button>
+        <span class="label light">Light</span>
+        <button class="button light" id="light-btn"></button>
+      </div>
     </div>
-    <button id="mode-btn">Mode</button>
-    <button id="increase-btn">Increase</button>
-    <button id="light-btn">Light</button>
   </body>
 </html>
