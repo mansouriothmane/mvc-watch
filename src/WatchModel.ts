@@ -17,11 +17,12 @@ export enum Light {
 }
 
 export class WatchModel {
-  constructor(
-    private _time: Time,
-    private _mode: Mode,
-    private _light: Light
-  ) {}
+  private static nextId = 0;
+  public readonly id: number;
+
+  constructor(private _time: Time, private _mode: Mode, private _light: Light) {
+    this.id = WatchModel.nextId++;
+  }
 
   //getters and setters
   get time() {

@@ -3,22 +3,22 @@ import { WatchView } from "./WatchView";
 import { sleep } from "./utils";
 
 export class WatchController {
-  test: Number;
-  constructor(private readonly view: WatchView) {}
+  constructor(
+    private readonly model: WatchModel,
+    private readonly view: WatchView
+  ) {}
 
-  async startWatch(model: WatchModel) {
-    //the view should probably be an attribute of the controller
-    //or make it a singleton ?
+  async updateTimeEverySecond() {
     while (true) {
       await sleep(1000);
-      model.incrementSeconds();
-      this.view.displayTime(model);
+      this.model.incrementSeconds();
+      this.view.updateTime();
     }
   }
 
-  changeMode(model: WatchModel) {
+  changeMode() {
     let newMode: Mode;
-    switch (model.mode) {
+    switch (this.model.mode) {
       case Mode.DEFAULT:
         newMode = Mode.HOURS;
         break;
@@ -29,61 +29,71 @@ export class WatchController {
         newMode = Mode.DEFAULT;
         break;
     }
-    model.setMode(newMode);
+    this.model.setMode(newMode);
   }
 
-  increaseTime(model: WatchModel) {
-    switch (model.mode) {
+  increaseTime() {
+    switch (this.model.mode) {
       case Mode.DEFAULT:
         break;
       case Mode.HOURS:
-        model.incrementHours();
+        this.model.incrementHours();
         break;
       case Mode.MINUTES:
-        model.incrementMinutes();
+        this.model.incrementMinutes();
         break;
     }
   }
 
   // THE FOLLOWING METHODS DIRECTLY EDIT THE VIEW
 
-  private onClickModeButton(model: WatchModel) {
-    this.changeMode(model);
-    switch (model.mode) {
+  private onClickModeButton() {
+    this.changeMode();
+    switch (this.model.mode) {
       case Mode.HOURS:
-        document.getElementById("time-h").classList.toggle("edit-mode");
+        document
+          .getElementById(`time-h-${this.model.id}`)
+          .classList.toggle("edit-mode");
         break;
       case Mode.MINUTES:
-        document.getElementById("time-h").classList.toggle("edit-mode");
-        document.getElementById("time-m").classList.toggle("edit-mode");
+        document
+          .getElementById(`time-h-${this.model.id}`)
+          .classList.toggle("edit-mode");
+        document
+          .getElementById(`time-m-${this.model.id}`)
+          .classList.toggle("edit-mode");
         break;
       case Mode.DEFAULT:
-        document.getElementById("time-m").classList.toggle("edit-mode");
+        document
+          .getElementById(`time-m-${this.model.id}`)
+          .classList.toggle("edit-mode");
         break;
     }
   }
 
-  private onClickIncreaseButton(model: WatchModel) {
-    this.increaseTime(model);
-    this.view.displayTime(model);
+  private onClickIncreaseButton() {
+    this.increaseTime();
+    this.view.updateTime();
   }
 
   private onClickLightButton() {
     document
-      .getElementById("time-container")
+      .getElementById(`time-container-${this.model.id}`)
       .classList.toggle("light-background");
   }
 
-  addEventListeners(model: WatchModel) {
-    const modeButton = document.getElementById("mode-btn");
-    modeButton.addEventListener("click", () => this.onClickModeButton(model));
+  addEventListeners() {
+    const modeButton = document.getElementById(`mode-btn-${this.model.id}`);
+    modeButton.addEventListener("click", () => this.onClickModeButton());
 
-    const increaseButton = document.getElementById("increase-btn");
+    const increaseButton = document.getElementById(
+      `increase-btn-${this.model.id}`
+    );
     increaseButton.addEventListener("click", () =>
-      this.onClickIncreaseButton(model)
+      this.onClickIncreaseButton()
     );
 
-    const lightButton = document.getElementById("light-btn");
+    const lightButton = document.getElementById(`light-btn-${this.model.id}`);
     lightButton.addEventListener("click", () => this.onClickLightButton());
   }
 }
