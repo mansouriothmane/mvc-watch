@@ -36,26 +36,37 @@ export class WatchModel {
     return this._light;
   }
 
-  incrementSeconds() {
-    //add the logic of incrementing minutes when time is hh:mm:59
-    //and increment hours when time is hh:59:59
-    //and reseting all to 0 when time is 23:59:59
-    let { hours: h, minutes: m, seconds: s } = this._time;
-    if (s != 59) {
-      s++;
-    } else if (m != 59) {
-      s = 0;
-      m++;
-    } else if (h != 23) {
-      m = 0;
-      h++;
-    } else {
-      s = 0;
-      m = 0;
-      h = 0;
-    }
-    this._time = { hours: h, minutes: m, seconds: s };
+  setMode(mode: Mode) {
+    this._mode = mode;
   }
 
-  increment() {}
+  toggleLight() {
+    this._light = 1 - this._light;
+  }
+
+  incrementHours() {
+    if (this._time.hours != 23) {
+      this._time.hours++;
+    } else {
+      this._time.hours = 0;
+    }
+  }
+
+  incrementMinutes() {
+    if (this._time.minutes != 59) {
+      this._time.minutes++;
+    } else {
+      this._time.minutes = 0;
+      this.incrementHours();
+    }
+  }
+
+  incrementSeconds() {
+    if (this._time.seconds != 59) {
+      this._time.seconds++;
+    } else {
+      this._time.seconds = 0;
+      this.incrementMinutes();
+    }
+  }
 }

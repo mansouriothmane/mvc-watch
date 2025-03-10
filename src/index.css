@@ -1,3 +1,49 @@
+@font-face {
+    font-family: 'Digital-7';
+    src: url('fonts/digital-7.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Digital-7-mono';
+    src: url('fonts/digital-7-mono.ttf') format('truetype');
+}
+
 h1 {
     color: red;
+}
+
+
+.time {
+    display: flex;
+    font-family: 'Digital-7-mono', sans-serif;
+    font-size: 5em;
+    /* color: #ffcc00; */
+    /* text-shadow: 0 0 5px #ffcc00; */
+    padding: 16px;
+}
+
+.time p {
+    margin: 0;
+    /* color: green; */
+}
+
+button {
+    font-size: 2em;
+}
+
+@keyframes blink-animation {
+    0% {
+      opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.edit-mode {
+animation: blink-animation 1s steps(2) infinite; 
+}
+
+.light-background {
+    background-color: #FBE106;
 }

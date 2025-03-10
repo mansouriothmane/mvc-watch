@@ -1,3 +1,4 @@
+import "./index.css";
 import { WatchController } from "./WatchController";
 import { Light, Mode, Time, WatchModel } from "./WatchModel";
 import { WatchView } from "./WatchView";
@@ -16,10 +17,10 @@ const time: Time = {
 const model = new WatchModel(time, Mode.DEFAULT, Light.OFF);
 
 const view = new WatchView();
-view.displayWatch(model);
+view.displayTime(model);
 
 // STEP 2 : update watch every second
 
-const controller = new WatchController();
-
+const controller = new WatchController(view);
 controller.startWatch(model);
+controller.addEventListeners(model);
