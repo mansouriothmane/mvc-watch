@@ -139,6 +139,12 @@
     transform: rotate(90deg);
 }
 
+.button.reset {
+    background: green;
+    left: -19px;
+    transform: rotate(90deg);
+}
+
 /* Button Labels */
 .label {
     position: absolute;
@@ -161,4 +167,9 @@
 
 .label.format {
     right: -120px;
+}
+
+
+.label.reset {
+    left: -60px;
 }

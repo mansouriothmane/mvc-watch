@@ -94,6 +94,11 @@ export class WatchController {
     this.view.updateTimeFormat();
   }
 
+  private onClickResetButton() {
+    this.model.time.reset();
+    this.view.updateTime();
+  }
+
   addEventListeners() {
     const modeButton = document.getElementById(`mode-btn-${this.model.id}`);
     modeButton.addEventListener("click", () => this.onClickModeButton());
@@ -110,5 +115,8 @@ export class WatchController {
 
     const formatButton = document.getElementById(`format-btn-${this.model.id}`);
     formatButton.addEventListener("click", () => this.onClickFormatButton());
+
+    const resetButton = document.getElementById(`reset-btn-${this.model.id}`);
+    resetButton.addEventListener("click", () => this.onClickResetButton());
   }
 }

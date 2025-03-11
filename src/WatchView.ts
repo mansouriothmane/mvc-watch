@@ -89,6 +89,8 @@ export class WatchView {
         <button class="button light" id="light-btn-${this.model.id}"></button>
         <span class="label format">AM/PM - 24H</span>
         <button class="button format" id="format-btn-${this.model.id}"></button>
+        <span class="label reset">Reset</span>
+        <button class="button reset" id="reset-btn-${this.model.id}"></button>
     `;
 
     watchDiv.appendChild(timeDisplay);

@@ -63,6 +63,15 @@ export class Time {
     }
   }
 
+  reset() {
+    const date =
+      this.gmtOffset != undefined
+        ? this.getDateWithOffset(this.gmtOffset)
+        : new Date();
+    this.hours = date.getHours();
+    this.minutes = date.getMinutes();
+  }
+
   private getDateWithOffset(gmtOffset: number): Date {
     const now = new Date();
     const utc = now.getTime() + now.getTimezoneOffset() * 60000; // Convert to UTC
