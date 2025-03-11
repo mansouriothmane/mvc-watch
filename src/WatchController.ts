@@ -1,5 +1,6 @@
-import { Mode, WatchModel } from "./WatchModel";
+import { WatchModel } from "./WatchModel";
 import { WatchView } from "./WatchView";
+import { Mode } from "./types";
 import { sleep } from "./utils";
 
 export class WatchController {
@@ -11,12 +12,12 @@ export class WatchController {
   async updateTimeEverySecond() {
     const remainingMiliseconds = 1000 - new Date().getMilliseconds();
     await sleep(remainingMiliseconds);
-    this.model.incrementSeconds();
+    this.model.time.incrementSeconds();
     this.view.updateTime();
 
     while (true) {
       await sleep(1000);
-      this.model.incrementSeconds();
+      this.model.time.incrementSeconds();
       this.view.updateTime();
     }
   }
@@ -42,10 +43,10 @@ export class WatchController {
       case Mode.DEFAULT:
         break;
       case Mode.HOURS:
-        this.model.incrementHours();
+        this.model.time.incrementHours();
         break;
       case Mode.MINUTES:
-        this.model.incrementMinutes();
+        this.model.time.incrementMinutes();
         break;
     }
   }

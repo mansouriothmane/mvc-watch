@@ -35,6 +35,27 @@
     gap: 50px;
 }
 
+.watchContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    border: 2px solid skyblue;
+    border-radius: 20px;
+    padding: 40px;
+    position: relative;
+}
+
+.remove-watch {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
 .watch {
     position: relative;
     width: 200px;
@@ -64,6 +85,19 @@
     /* position: absolute; */
     top: 5px;
     right: -15px;
+}
+
+/* Timezone */
+.timezone {
+    background: rgb(204, 253, 204);
+    padding: 10px 20px;
+    border: black;
+    border-radius: 8px;
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    position: relative;
 }
 
 /* Buttons */

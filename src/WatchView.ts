@@ -7,12 +7,53 @@ export class WatchView {
     return `${n < 10 ? "0" : ""}${n}`;
   }
 
+  createTimezoneElement() {
+    const timezone = document.createElement("p");
+    timezone.classList.add("timezone");
+    timezone.textContent = `GMT${
+      this.model.time.gmtOffset === 0
+        ? ""
+        : this.model.time.gmtOffset > 0
+        ? `+${this.model.time.gmtOffset}`
+        : this.model.time.gmtOffset
+    }`;
+    return timezone;
+  }
+
+  createRemoveButtonElement() {
+    const removeButton = document.createElement("button");
+    removeButton.id = `remove-${this.model.id}`;
+    removeButton.classList.add("remove-watch");
+    removeButton.textContent = "X";
+    removeButton.addEventListener("click", () => this.removeWatch());
+    return removeButton;
+  }
+
   displayWatch() {
     const container = document.querySelector(".container");
     if (!container) return;
 
+    const watchDivContainer = document.createElement("div");
+    watchDivContainer.id = `watch-container-${this.model.id}`;
+    watchDivContainer.classList.add("watchContainer");
+
     const watchDiv = this.createWatchElement();
-    container.appendChild(watchDiv);
+    const timezone = this.createTimezoneElement();
+    const removeButton = this.createRemoveButtonElement();
+
+    watchDivContainer.appendChild(watchDiv);
+    watchDivContainer.appendChild(timezone);
+    watchDivContainer.appendChild(removeButton);
+
+    container.appendChild(watchDivContainer);
+  }
+
+  removeWatch() {
+    const watchDivContainer = document.getElementById(
+      `watch-container-${this.model.id}`
+    );
+    if (!watchDivContainer) return;
+    watchDivContainer.remove();
   }
 
   createWatchElement(): HTMLElement {
@@ -54,14 +95,13 @@ export class WatchView {
   }
 
   updateTime() {
-    document.getElementById(`time-h-${this.model.id}`).innerText = this.addZ(
-      this.model.time.hours
-    );
-    document.getElementById(`time-m-${this.model.id}`).innerText = this.addZ(
-      this.model.time.minutes
-    );
-    document.getElementById(`time-s-${this.model.id}`).innerText = this.addZ(
-      this.model.time.seconds
-    );
+    const hoursElement = document.getElementById(`time-h-${this.model.id}`);
+    const minutesElement = document.getElementById(`time-m-${this.model.id}`);
+    const secondsElement = document.getElementById(`time-s-${this.model.id}`);
+    if (hoursElement && minutesElement && secondsElement) {
+      hoursElement.innerText = this.addZ(this.model.time.hours);
+      minutesElement.innerText = this.addZ(this.model.time.minutes);
+      secondsElement.innerText = this.addZ(this.model.time.seconds);
+    }
   }
 }
