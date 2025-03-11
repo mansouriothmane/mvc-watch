@@ -80,6 +80,9 @@ export class WatchController {
   private onClickIncreaseButton() {
     this.increaseTime();
     this.view.updateTime();
+    if (this.model.time.hour12) {
+      this.view.updateTimeFormat();
+    }
   }
 
   private onClickLightButton() {
@@ -97,6 +100,9 @@ export class WatchController {
   private onClickResetButton() {
     this.model.time.reset();
     this.view.updateTime();
+    if (this.model.time.hour12) {
+      this.view.updateTimeFormat();
+    }
   }
 
   addEventListeners() {

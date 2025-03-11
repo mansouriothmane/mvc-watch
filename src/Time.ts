@@ -43,6 +43,9 @@ export class Time {
     } else {
       this.hours = 0;
     }
+    if (this.hour12 && this.hours % 12 == 0) {
+      this.ampm = this.ampm == "AM" ? "PM" : "AM";
+    }
   }
 
   incrementMinutes() {
@@ -70,6 +73,7 @@ export class Time {
         : new Date();
     this.hours = date.getHours();
     this.minutes = date.getMinutes();
+    this.ampm = this.hours >= 12 ? "PM" : "AM";
   }
 
   private getDateWithOffset(gmtOffset: number): Date {
