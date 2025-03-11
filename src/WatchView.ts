@@ -76,7 +76,7 @@ export class WatchView {
         <sup id="time-s-${this.model.id}">${this.addZ(
       this.model.time.getSeconds()
     )}</sup>
-        <sup id="time-ampm-${this.model.id}"></span>
+        <span id="time-ampm-${this.model.id}" class="time-ampm"></span>
     `;
 
     // Buttons and Labels
