@@ -88,6 +88,12 @@ export class WatchController {
       .classList.toggle("light-background");
   }
 
+  private onClickFormatButton() {
+    this.model.time.toggleFormat();
+    this.view.updateTime();
+    this.view.updateTimeFormat();
+  }
+
   addEventListeners() {
     const modeButton = document.getElementById(`mode-btn-${this.model.id}`);
     modeButton.addEventListener("click", () => this.onClickModeButton());
@@ -101,5 +107,8 @@ export class WatchController {
 
     const lightButton = document.getElementById(`light-btn-${this.model.id}`);
     lightButton.addEventListener("click", () => this.onClickLightButton());
+
+    const formatButton = document.getElementById(`format-btn-${this.model.id}`);
+    formatButton.addEventListener("click", () => this.onClickFormatButton());
   }
 }

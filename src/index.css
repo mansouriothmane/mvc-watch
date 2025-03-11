@@ -44,6 +44,7 @@
     border-radius: 20px;
     padding: 40px;
     position: relative;
+    min-width: 400px;;
 }
 
 .remove-watch {
@@ -82,9 +83,6 @@
 
 .time-display sup {
     font-size: 12px;
-    /* position: absolute; */
-    top: 5px;
-    right: -15px;
 }
 
 /* Timezone */
@@ -97,13 +95,14 @@
     font-size: 12px;
     font-weight: bold;
     text-align: center;
-    position: relative;
+    position: absolute;
+    top: 0px;
+    left: 10px;
 }
 
 /* Buttons */
 .button {
     position: absolute;
-    background: gold;
     border: 2px solid black;
     padding: 5px 10px;
     border-radius: 4px;
@@ -114,21 +113,30 @@
 
 /* Button Positions */
 .button.mode { 
+    background: gold;
     top: 15px;
     right: 15px;
     transform: rotate(45deg);
 }
 
 .button.increase { 
+    background: gold;
     bottom: 15px;
     right: 15px;
     transform: rotate(-45deg);
 }
 
 .button.light { 
+    background: gold;
     bottom: 15px;
     left: 15px; 
     transform: rotate(45deg);
+}
+
+.button.format { 
+    background: green;
+    right: -19px; 
+    transform: rotate(90deg);
 }
 
 /* Button Labels */
@@ -149,4 +157,8 @@
 .label.light {
     bottom: 0px;
     left: -25px;
+}
+
+.label.format {
+    right: -120px;
 }

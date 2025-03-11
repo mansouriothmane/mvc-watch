@@ -68,14 +68,15 @@ export class WatchView {
 
     timeDisplay.innerHTML = `
         <span id="time-h-${this.model.id}">${this.addZ(
-      this.model.time.hours
+      this.model.time.getHours()
     )}</span>:
         <span id="time-m-${this.model.id}">${this.addZ(
-      this.model.time.minutes
+      this.model.time.getMinutes()
     )}</span>
         <sup id="time-s-${this.model.id}">${this.addZ(
-      this.model.time.seconds
+      this.model.time.getSeconds()
     )}</sup>
+        <sup id="time-ampm-${this.model.id}"></span>
     `;
 
     // Buttons and Labels
@@ -86,6 +87,8 @@ export class WatchView {
         <button class="button increase" id="increase-btn-${this.model.id}"></button>
         <span class="label light">Light</span>
         <button class="button light" id="light-btn-${this.model.id}"></button>
+        <span class="label format">AM/PM - 24H</span>
+        <button class="button format" id="format-btn-${this.model.id}"></button>
     `;
 
     watchDiv.appendChild(timeDisplay);
@@ -94,14 +97,20 @@ export class WatchView {
     return watchDiv;
   }
 
+  updateTimeFormat() {
+    const ampmElement = document.getElementById(`time-ampm-${this.model.id}`);
+    if (!ampmElement) return;
+    ampmElement.innerText = this.model.time.hour12 ? this.model.time.ampm : "";
+  }
+
   updateTime() {
     const hoursElement = document.getElementById(`time-h-${this.model.id}`);
     const minutesElement = document.getElementById(`time-m-${this.model.id}`);
     const secondsElement = document.getElementById(`time-s-${this.model.id}`);
     if (hoursElement && minutesElement && secondsElement) {
-      hoursElement.innerText = this.addZ(this.model.time.hours);
-      minutesElement.innerText = this.addZ(this.model.time.minutes);
-      secondsElement.innerText = this.addZ(this.model.time.seconds);
+      hoursElement.innerText = this.addZ(this.model.time.getHours());
+      minutesElement.innerText = this.addZ(this.model.time.getMinutes());
+      secondsElement.innerText = this.addZ(this.model.time.getSeconds());
     }
   }
 }
